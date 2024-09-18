@@ -1,3 +1,3 @@
 # OS_labs
 
-## Pinchuk Mihail Sergeevich M80-108Б-23
+## Pinchuk Mihail Sergeevich M80-208Б-23
