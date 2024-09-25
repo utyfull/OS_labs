@@ -29,7 +29,7 @@ protected:
     }
 };
 
-TEST_F(FileTest, CheckSumFromFile) {
+TEST_F(FileTest, StandartPositiveSum) {
 
     SetFileContent("1 2 3 4 5");
     CreateTestFile(fileName, fileContent);
@@ -50,4 +50,52 @@ TEST_F(FileTest, CheckSumFromFile) {
     std::cout.rdbuf(oldCoutBuffer);
 
     EXPECT_EQ(output.str(), "Сумма: 15\n");
+}
+
+TEST_F(FileTest, StandartNegativSum) {
+
+    SetFileContent("-1 -1 -2 -1");
+    CreateTestFile(fileName, fileContent);
+
+    std::ostringstream output;
+    std::streambuf* oldCoutBuffer = std::cout.rdbuf();
+    std::cout.rdbuf(output.rdbuf());
+
+    MainTestFunction(fileName);
+
+    std::cout.rdbuf(oldCoutBuffer);
+
+    EXPECT_EQ(output.str(), "Сумма: -5\n");
+}
+
+TEST_F(FileTest, StandartMeshSum) {
+
+    SetFileContent("-1 1 2 -1");
+    CreateTestFile(fileName, fileContent);
+
+    std::ostringstream output;
+    std::streambuf* oldCoutBuffer = std::cout.rdbuf();
+    std::cout.rdbuf(output.rdbuf());
+
+    MainTestFunction(fileName);
+
+    std::cout.rdbuf(oldCoutBuffer);
+
+    EXPECT_EQ(output.str(), "Сумма: 1\n");
+}
+
+TEST_F(FileTest, OnlyZeroSum) {
+
+    SetFileContent("0 0 0 0");
+    CreateTestFile(fileName, fileContent);
+
+    std::ostringstream output;
+    std::streambuf* oldCoutBuffer = std::cout.rdbuf();
+    std::cout.rdbuf(output.rdbuf());
+
+    MainTestFunction(fileName);
+
+    std::cout.rdbuf(oldCoutBuffer);
+
+    EXPECT_EQ(output.str(), "Сумма: 0\n");
 }
