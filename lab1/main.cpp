@@ -2,8 +2,7 @@
 
 
 int main() {
-    int pipefd[2]; // lескрипторы pipe
-    pid_t pid;
+    int pipefd[2]; // дескрипторы pipe
 
     if (pipe(pipefd) == -1) {
         std::cerr << "Ошибка при создании pipe" << std::endl;
@@ -14,11 +13,10 @@ int main() {
     std::string filename;
     std::cin >> filename;
 
-    pid = create_child_process(filename, pipefd);
-
-    read_from_pipe(pipefd);
+    CreateChildProcess(filename, pipefd);
+    ReadFromPipe(pipefd);
 
     wait(nullptr);
-
+    
     return 0;
 }

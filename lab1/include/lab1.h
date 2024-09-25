@@ -8,8 +8,9 @@
 #include <sstream>     
 #include <string>
 
-void process_data(int write_fd);
-pid_t create_child_process(const std::string& filename, int pipefd[2]);
-void read_from_pipe(int pipefd[2]);
+void ProcessData(int write_fd);
+void CreateChildProcess(const std::string& filename, int pipefd[2]);
+void ReadFromPipe(int pipefd[2]);
+void MainTestFunction(const std::string& filename);
 
 #endif
