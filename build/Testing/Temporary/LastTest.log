@@ -1,0 +1,35 @@
+Start testing: Sep 25 18:24 UTC
+----------------------------------------------------------
+1/1 Testing: test_lab1
+1/1 Test: test_lab1
+Command: "/workspaces/OS_labs/build/tests/test_lab1"
+Directory: /workspaces/OS_labs/build/tests
+"test_lab1" start time: Sep 25 18:24 UTC
+Output:
+----------------------------------------------------------
+Running main() from /workspaces/OS_labs/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from FileTest
+[ RUN      ] FileTest.StandartPositiveSum
+[       OK ] FileTest.StandartPositiveSum (2 ms)
+[ RUN      ] FileTest.StandartNegativSum
+[       OK ] FileTest.StandartNegativSum (2 ms)
+[ RUN      ] FileTest.StandartMeshSum
+[       OK ] FileTest.StandartMeshSum (2 ms)
+[ RUN      ] FileTest.OnlyZeroSum
+[       OK ] FileTest.OnlyZeroSum (2 ms)
+[----------] 4 tests from FileTest (10 ms total)
+
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (10 ms total)
+[  PASSED  ] 4 tests.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"test_lab1" end time: Sep 25 18:24 UTC
+"test_lab1" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 25 18:24 UTC

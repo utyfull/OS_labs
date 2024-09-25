@@ -1,0 +1,42 @@
+[
+{
+  "directory": "/workspaces/OS_labs/build/_deps/googletest-build/googlemock",
+  "command": "/usr/local/bin/g++  -I/workspaces/OS_labs/build/_deps/googletest-src/googlemock/include -I/workspaces/OS_labs/build/_deps/googletest-src/googlemock -isystem /workspaces/OS_labs/build/_deps/googletest-src/googletest/include -isystem /workspaces/OS_labs/build/_deps/googletest-src/googletest -g -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wall -Wextra -pedantic -Werror -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /workspaces/OS_labs/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
+  "file": "/workspaces/OS_labs/build/_deps/googletest-src/googlemock/src/gmock-all.cc"
+},
+{
+  "directory": "/workspaces/OS_labs/build/_deps/googletest-build/googlemock",
+  "command": "/usr/local/bin/g++  -isystem /workspaces/OS_labs/build/_deps/googletest-src/googlemock/include -isystem /workspaces/OS_labs/build/_deps/googletest-src/googlemock -isystem /workspaces/OS_labs/build/_deps/googletest-src/googletest/include -isystem /workspaces/OS_labs/build/_deps/googletest-src/googletest -g -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wall -Wextra -pedantic -Werror -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /workspaces/OS_labs/build/_deps/googletest-src/googlemock/src/gmock_main.cc",
+  "file": "/workspaces/OS_labs/build/_deps/googletest-src/googlemock/src/gmock_main.cc"
+},
+{
+  "directory": "/workspaces/OS_labs/build/_deps/googletest-build/googletest",
+  "command": "/usr/local/bin/g++  -I/workspaces/OS_labs/build/_deps/googletest-src/googletest/include -I/workspaces/OS_labs/build/_deps/googletest-src/googletest -g -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wall -Wextra -pedantic -Werror -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /workspaces/OS_labs/build/_deps/googletest-src/googletest/src/gtest-all.cc",
+  "file": "/workspaces/OS_labs/build/_deps/googletest-src/googletest/src/gtest-all.cc"
+},
+{
+  "directory": "/workspaces/OS_labs/build/_deps/googletest-build/googletest",
+  "command": "/usr/local/bin/g++  -isystem /workspaces/OS_labs/build/_deps/googletest-src/googletest/include -isystem /workspaces/OS_labs/build/_deps/googletest-src/googletest -g -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wall -Wextra -pedantic -Werror -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /workspaces/OS_labs/build/_deps/googletest-src/googletest/src/gtest_main.cc",
+  "file": "/workspaces/OS_labs/build/_deps/googletest-src/googletest/src/gtest_main.cc"
+},
+{
+  "directory": "/workspaces/OS_labs/build/lab1",
+  "command": "/usr/local/bin/g++  -I/workspaces/OS_labs/lab1/include -g -Wall -Wextra -pedantic -Werror -o CMakeFiles/lab1.dir/main.cpp.o -c /workspaces/OS_labs/lab1/main.cpp",
+  "file": "/workspaces/OS_labs/lab1/main.cpp"
+},
+{
+  "directory": "/workspaces/OS_labs/build/lab1",
+  "command": "/usr/local/bin/g++  -I/workspaces/OS_labs/lab1/include -g -Wall -Wextra -pedantic -Werror -o CMakeFiles/lab1.dir/src/lab1.cpp.o -c /workspaces/OS_labs/lab1/src/lab1.cpp",
+  "file": "/workspaces/OS_labs/lab1/src/lab1.cpp"
+},
+{
+  "directory": "/workspaces/OS_labs/build/tests",
+  "command": "/usr/local/bin/g++  -I/workspaces/OS_labs/tests/../lab1/include -isystem /workspaces/OS_labs/build/_deps/googletest-src/googletest/include -isystem /workspaces/OS_labs/build/_deps/googletest-src/googletest -g -Wall -Wextra -pedantic -Werror -o CMakeFiles/test_lab1.dir/test_lab1.cpp.o -c /workspaces/OS_labs/tests/test_lab1.cpp",
+  "file": "/workspaces/OS_labs/tests/test_lab1.cpp"
+},
+{
+  "directory": "/workspaces/OS_labs/build/tests",
+  "command": "/usr/local/bin/g++  -I/workspaces/OS_labs/tests/../lab1/include -isystem /workspaces/OS_labs/build/_deps/googletest-src/googletest/include -isystem /workspaces/OS_labs/build/_deps/googletest-src/googletest -g -Wall -Wextra -pedantic -Werror -o CMakeFiles/test_lab1.dir/__/lab1/src/lab1.cpp.o -c /workspaces/OS_labs/lab1/src/lab1.cpp",
+  "file": "/workspaces/OS_labs/lab1/src/lab1.cpp"
+}
+]

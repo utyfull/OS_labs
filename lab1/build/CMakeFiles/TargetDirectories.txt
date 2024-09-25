@@ -1,0 +1,3 @@
+/workspaces/OS_labs/lab1/build/CMakeFiles/lab1.dir
+/workspaces/OS_labs/lab1/build/CMakeFiles/edit_cache.dir
+/workspaces/OS_labs/lab1/build/CMakeFiles/rebuild_cache.dir
