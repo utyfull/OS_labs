@@ -31,7 +31,7 @@ protected:
 
 TEST_F(FileTest, StandartPositiveSum) {
 
-    SetFileContent("1 2 3 4 5");
+    SetFileContent("1.2 2.2 3.2 4.2 5.2");
     CreateTestFile(fileName, fileContent);
 
     // Создаем строковый поток для перехвата вывода std::cout
@@ -49,12 +49,12 @@ TEST_F(FileTest, StandartPositiveSum) {
     // Восстанавливаем оригинальный std::cout
     std::cout.rdbuf(oldCoutBuffer);
 
-    EXPECT_EQ(output.str(), "Сумма: 15\n");
+    EXPECT_EQ(output.str(), "Сумма: 16\n");
 }
 
 TEST_F(FileTest, StandartNegativeSum) {
 
-    SetFileContent("-1 -1 -2 -1");
+    SetFileContent("-1.1 -1.1 -2.2 -1.1");
     CreateTestFile(fileName, fileContent);
 
     std::ostringstream output;
@@ -65,12 +65,12 @@ TEST_F(FileTest, StandartNegativeSum) {
 
     std::cout.rdbuf(oldCoutBuffer);
 
-    EXPECT_EQ(output.str(), "Сумма: -5\n");
+    EXPECT_EQ(output.str(), "Сумма: -5.5\n");
 }
 
 TEST_F(FileTest, StandartMeshSum) {
 
-    SetFileContent("-1 1 2 -1");
+    SetFileContent("-1.1 1.25 2.4 -1.05");
     CreateTestFile(fileName, fileContent);
 
     std::ostringstream output;
@@ -81,7 +81,7 @@ TEST_F(FileTest, StandartMeshSum) {
 
     std::cout.rdbuf(oldCoutBuffer);
 
-    EXPECT_EQ(output.str(), "Сумма: 1\n");
+    EXPECT_EQ(output.str(), "Сумма: 1.5\n");
 }
 
 TEST_F(FileTest, OnlyZeroSum) {
