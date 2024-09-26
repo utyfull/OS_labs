@@ -20,8 +20,8 @@ void ProcessData(int write_fd) {
         std::ostringstream result;
         result << "Сумма: " << sum << std::endl;
 
-        std::string result_str = result.str();
-        write(write_fd, result_str.c_str(), result_str.size());
+        std::string resultStr = result.str();
+        write(write_fd, resultStr.c_str(), resultStr.size());
     }
 
     close(write_fd);
@@ -70,7 +70,7 @@ void MainTestFunction(const std::string& filename) {
 
     if (pipe(pipefd) == -1) {
         std::cerr << "Ошибка при создании pipe" << std::endl;
-        exit(EXIT_FAILURE);
+        exit(1);
     }
 
     CreateChildProcess(filename, pipefd);

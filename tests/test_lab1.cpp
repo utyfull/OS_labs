@@ -52,7 +52,7 @@ TEST_F(FileTest, StandartPositiveSum) {
     EXPECT_EQ(output.str(), "Сумма: 15\n");
 }
 
-TEST_F(FileTest, StandartNegativSum) {
+TEST_F(FileTest, StandartNegativeSum) {
 
     SetFileContent("-1 -1 -2 -1");
     CreateTestFile(fileName, fileContent);
