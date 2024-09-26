@@ -1,7 +1,7 @@
 #include "lab1.h"
 
 
-void ProcessData(int write_fd) {
+void ProcessData(int writeFd) {
     std::string line;
 
     while (std::getline(std::cin, line)) {
@@ -21,10 +21,10 @@ void ProcessData(int write_fd) {
         result << "Сумма: " << sum << std::endl;
 
         std::string resultStr = result.str();
-        write(write_fd, resultStr.c_str(), resultStr.size());
+        write(writeFd, resultStr.c_str(), resultStr.size());
     }
 
-    close(write_fd);
+    close(writeFd);
 }
 
 void CreateChildProcess(const std::string& filename, int pipefd[2]) {
