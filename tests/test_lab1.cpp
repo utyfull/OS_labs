@@ -3,99 +3,77 @@
 #include <cstdio>
 #include <string>
 #include <sstream>
+#include <random>
 #include "lab1.h"
 
-class FileTest : public ::testing::Test {
-protected:
-    std::string fileName;
-    std::string fileContent;
+class TempFile {
+public:
+    TempFile(const std::string& content) {
 
-    void SetFileContent(const std::string& content) {
-        fileContent = content;
-    }
+        std::srand(static_cast<unsigned>(std::time(0)));
 
-    void SetUp() override {
-        fileName = "test_file.txt"; 
-    }
+        fileName = "test_file_" + std::to_string(std::rand()) + ".txt"; 
 
-    void TearDown() override {
-        std::remove(fileName.c_str());
-    }
-
-    void CreateTestFile(const std::string& fileName, const std::string& content) {
         std::ofstream outFile(fileName);
+        if (!outFile) {
+            throw std::runtime_error("Не удалось создать временный файл");
+        }
         outFile << content;
         outFile.close();
     }
+
+    ~TempFile() {
+
+        std::remove(fileName.c_str());
+    }
+
+    std::string getFileName() const {
+        return fileName;
+    }
+
+private:
+    std::string fileName;
 };
 
-TEST_F(FileTest, StandartPositiveSum) {
+TEST(FileTest, StandartPositiveSum) {
+    TempFile tempFile("1.2 2.2 3.2 4.2 5.2");
 
-    SetFileContent("1.2 2.2 3.2 4.2 5.2");
-    CreateTestFile(fileName, fileContent);
-
-    // Создаем строковый поток для перехвата вывода std::cout
     std::ostringstream output;
-    
-    // Сохраняем старый буфер std::cout
-    std::streambuf* oldCoutBuffer = std::cout.rdbuf();
-    
-    // Перенаправляем std::cout на наш строковый поток
-    std::cout.rdbuf(output.rdbuf());
 
-    // Вызываем тестируемую функцию
-    MainTestFunction(fileName);
-
-    // Восстанавливаем оригинальный std::cout
-    std::cout.rdbuf(oldCoutBuffer);
+    MainTestFunction(tempFile.getFileName(), output);
 
     EXPECT_EQ(output.str(), "Сумма: 16\n");
 }
 
-TEST_F(FileTest, StandartNegativeSum) {
+TEST(FileTest, StandartNegativeSum) {
 
-    SetFileContent("-1.1 -1.1 -2.2 -1.1");
-    CreateTestFile(fileName, fileContent);
+    TempFile tempFile("-1.1 -1.1 -2.2 -1.1");
 
     std::ostringstream output;
-    std::streambuf* oldCoutBuffer = std::cout.rdbuf();
-    std::cout.rdbuf(output.rdbuf());
 
-    MainTestFunction(fileName);
-
-    std::cout.rdbuf(oldCoutBuffer);
+    MainTestFunction(tempFile.getFileName(), output);
 
     EXPECT_EQ(output.str(), "Сумма: -5.5\n");
 }
 
-TEST_F(FileTest, StandartMeshSum) {
+TEST(FileTest, StandartMeshSum) {
 
-    SetFileContent("-1.1 1.25 2.4 -1.05");
-    CreateTestFile(fileName, fileContent);
+    TempFile tempFile("-1.1 1.25 2.4 -1.05");
 
     std::ostringstream output;
-    std::streambuf* oldCoutBuffer = std::cout.rdbuf();
-    std::cout.rdbuf(output.rdbuf());
 
-    MainTestFunction(fileName);
-
-    std::cout.rdbuf(oldCoutBuffer);
+    MainTestFunction(tempFile.getFileName(), output);
 
     EXPECT_EQ(output.str(), "Сумма: 1.5\n");
 }
 
-TEST_F(FileTest, OnlyZeroSum) {
+TEST(FileTest, OnlyZeroSum) {
 
-    SetFileContent("0 0 0 0");
-    CreateTestFile(fileName, fileContent);
+    TempFile tempFile("0 0 0 0");
 
     std::ostringstream output;
-    std::streambuf* oldCoutBuffer = std::cout.rdbuf();
-    std::cout.rdbuf(output.rdbuf());
 
-    MainTestFunction(fileName);
-
-    std::cout.rdbuf(oldCoutBuffer);
+    MainTestFunction(tempFile.getFileName(), output);
 
     EXPECT_EQ(output.str(), "Сумма: 0\n");
 }
