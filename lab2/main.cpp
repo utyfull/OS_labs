@@ -2,7 +2,7 @@
 
 int main() {
     int arraySize = 1000000000;  
-    int numThreads = 64;       
+    int numThreads = 16;       
     std::vector<int> array(arraySize);
     int knownMin = -500;
     int knownMax = 1500;

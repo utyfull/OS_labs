@@ -8,10 +8,11 @@ void FindMinMax(const std::vector<int>& arr, int start, int end) {
     int localMin = std::numeric_limits<int>::max();
     int localMax = std::numeric_limits<int>::min();
 
-    for (int i = start; i < end; ++i) {
+    for (int i = start; i < end; i++) {
         if (arr[i] < localMin) {
             localMin = arr[i];
-        } else if (arr[i] > localMax) {
+        } 
+        if (arr[i] > localMax) {
             localMax = arr[i];
         }
     }
@@ -19,7 +20,8 @@ void FindMinMax(const std::vector<int>& arr, int start, int end) {
     std::lock_guard<std::mutex> lock(mtx);
     if (localMin < globalMin) {
         globalMin = localMin;
-    } else if (localMax > globalMax) {
+    }
+    if (localMax > globalMax) {
         globalMax = localMax;
     }
 }
@@ -40,15 +42,12 @@ std::pair<int, int> FindMinMaxInArray(const std::vector<int>& array, int numThre
     // numThreads = std::thread::hardware_concurrency();  
     // } защита от слишком большого колличества потоков, здесь не нужно 
 
-    globalMin = std::numeric_limits<int>::max();
-    globalMax = std::numeric_limits<int>::min();
-
     std::vector<std::thread> threads;
     int segmentSize = array.size() / numThreads;
 
     for (int i = 0; i < numThreads; ++i) {
         int start = i * segmentSize;
-        int end = (i == numThreads - 1) ? array.size() : (i + 1) * segmentSize;
+        int end = (i == numThreads - 1) ? array.size() : (i + 1) * segmentSize; 
         threads.emplace_back(FindMinMax, std::cref(array), start, end);
     }
 
