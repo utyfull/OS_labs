@@ -2,7 +2,7 @@
 
 int main() {
     int arraySize = 1000000000;  
-    int numThreads = 16;       
+    int numThreads = 64;       
     std::vector<int> array(arraySize);
     int knownMin = -500;
     int knownMax = 1500;
@@ -18,6 +18,6 @@ int main() {
     std::cout << "Found Min: " << result.first << std::endl;
     std::cout << "Found Max: " << result.second << std::endl;
     std::cout << "Time taken: " << elapsedTime.count() << " seconds" << std::endl;
-    
+
     return 0;
 }
