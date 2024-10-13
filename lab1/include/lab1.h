@@ -1,5 +1,5 @@
-#ifndef LAB_3_H
-#define LAB_3_H
+#ifndef LAB_1_H
+#define LAB_1_H
 
 #include <iostream>
 #include <unistd.h>    
