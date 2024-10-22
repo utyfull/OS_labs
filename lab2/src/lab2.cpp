@@ -1,29 +1,30 @@
 #include "lab2.h"
 
-std::mutex mtx;                
-int globalMin = std::numeric_limits<int>::max();  
-int globalMax = std::numeric_limits<int>::min();
-
-void FindMinMax(const std::vector<int>& arr, int start, int end) {
+void* FindMinMax(void* arg) {
+    ThreadData* data = (ThreadData*)arg;
+    const std::vector<int>& arr = *(data->arr);
     int localMin = std::numeric_limits<int>::max();
     int localMax = std::numeric_limits<int>::min();
 
-    for (int i = start; i < end; i++) {
+    for (std::size_t i = data->start; i < data->end; i++) {
         if (arr[i] < localMin) {
             localMin = arr[i];
-        } 
+        }
         if (arr[i] > localMax) {
             localMax = arr[i];
         }
     }
 
-    std::lock_guard<std::mutex> lock(mtx);
-    if (localMin < globalMin) {
-        globalMin = localMin;
+    pthread_mutex_lock(&data->var->mutex);
+    if (localMin < data->var->globalMin) {
+        data->var->globalMin = localMin;
     }
-    if (localMax > globalMax) {
-        globalMax = localMax;
+    if (localMax > data->var->globalMax) {
+        data->var->globalMax = localMax;
     }
+    pthread_mutex_unlock(&data->var->mutex);
+
+    return NULL;
 }
 
 void FillVectorWithRandomValues(std::vector<int>& arr, int knownMin, int knownMax) {
@@ -38,22 +39,32 @@ void FillVectorWithRandomValues(std::vector<int>& arr, int knownMin, int knownMa
 }
 
 std::pair<int, int> FindMinMaxInArray(const std::vector<int>& array, int numThreads) {
-    // if (numThreads > std::thread::hardware_concurrency()) {
-    // numThreads = std::thread::hardware_concurrency();  
-    // } защита от слишком большого колличества потоков, здесь не нужно 
+    Var var;
+    var.globalMin = std::numeric_limits<int>::max();  
+    var.globalMax = std::numeric_limits<int>::min();
 
-    std::vector<std::thread> threads;
-    int segmentSize = array.size() / numThreads;
+    pthread_mutex_init(&var.mutex, NULL);
+
+    std::size_t segmentSize = array.size() / numThreads; 
+    std::vector<pthread_t> threads(numThreads);  
+    std::vector<ThreadData> threadData(numThreads); 
 
     for (int i = 0; i < numThreads; ++i) {
-        int start = i * segmentSize;
-        int end = (i == numThreads - 1) ? array.size() : (i + 1) * segmentSize; 
-        threads.emplace_back(FindMinMax, std::cref(array), start, end);
+        threadData[i] = {
+            &array,
+            i * segmentSize,
+            (i == numThreads - 1) ? array.size() : (i + 1) * segmentSize,
+            &var
+        };
+        pthread_create(&threads[i], NULL, FindMinMax, (void*)&threadData[i]);
     }
 
-    for (auto& thread : threads) {
-        thread.join();
+    for (int i = 0; i < numThreads; ++i) {
+        pthread_join(threads[i], NULL);
     }
 
-    return {globalMin, globalMax};
+    pthread_mutex_destroy(&var.mutex);
+
+    return {var.globalMin, var.globalMax};
 }
+

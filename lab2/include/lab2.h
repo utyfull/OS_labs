@@ -6,16 +6,25 @@
 #include <thread>
 #include <limits>
 #include <cstdlib>
-#include <mutex>
 #include <algorithm>
 #include <utility>
 #include <chrono>
+#include <pthread.h>
 
-extern std::mutex mtx;
-extern int globalMin;
-extern int globalMax;
+struct Var {
+    int globalMin;
+    int globalMax;
+    pthread_mutex_t mutex;
+};
 
-void FindMinMax(const std::vector<int>& arr, int start, int end);
+struct ThreadData {
+    const std::vector<int>* arr;
+    std::size_t start;
+    std::size_t end;
+    Var* var;
+};
+
+void FindMinMax(const std::vector<int>& arr, int start, int end, struct Var var);
 void FillVectorWithRandomValues(std::vector<int>& arr, int knownMin, int knownMax);
 std::pair<int, int> FindMinMaxInArray(const std::vector<int>& array, int numThreads);
 
